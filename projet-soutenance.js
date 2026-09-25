@@ -1,18 +1,18 @@
 const prompt = require("prompt-sync")()
 function tableauAffichage (){
-    console.log(" 1- AJOUTER CONDIDAT. ")
-    console.log(" 2- Ajouter plusieurs condidat à la fois. ")
-    console.log(" 3- Afficher la liste des condidats. ")
-    console.log(" 4- Voter pour un condidat. ")
-    console.log(" 5- Modifier les informations d'un condidat. ")
-    console.log(" 6- Supprimer un condidat. ")
-    console.log(" 7- Rechercher des condidats. ")
+    console.log(" 1- AJOUTER CaNDIDAT. ")
+    console.log(" 2- Ajouter plusieurs candidat à la fois. ")
+    console.log(" 3- Afficher la liste des candidats. ")
+    console.log(" 4- Voter pour un candidat. ")
+    console.log(" 5- Modifier les informations d'un candidat. ")
+    console.log(" 6- Supprimer un candidat. ")
+    console.log(" 7- Rechercher des candidats. ")
     console.log(" 8- Statique de voteur. ")
     console.log(" 0- Quitter. ")
 }
-let  condidats = []
+let  candidats = []
 
-function ajoutercondidat(){
+function ajoutercandidat(){
     let cin_ = prompt("CIN: ")
     let nom_ = prompt("NOm : ")
     let prenom_ = prompt("Prenom : ")
@@ -20,7 +20,7 @@ function ajoutercondidat(){
     let partipolitique_ = prompt("Partipolitique : ")
     
 
-    let condidat ={
+    let candidat ={
         Cin : cin_ ,
         Nom : nom_ , 
         Prenom : prenom_ ,
@@ -28,9 +28,17 @@ function ajoutercondidat(){
         partipolitique : partipolitique_ ,
         votes : []
     };
-    condidats.push(condidat);
+    candidats.push(candidat);
     console.log("condidat Ajoutée : " + prenom_ + " " + nom_)
 
+}
+function ajouter_Plus_Candidats(){
+    let reponse = prompt("voulez-vous ajouter un candidat ? (oui/non)")
+    while(reponse === "oui"){
+        ajoutercandidat()
+        reponse = prompt("voulez-vous ajouter un autre candidat ? ")
+        
+    }
 }
 
 
@@ -40,10 +48,10 @@ do {
     choix = Number(prompt("tapez votre choix ici : "))
     switch(choix){
         case 1 :
-            ajoutercondidat()
+            ajoutercandidat()
             break; 
         case 2 :
-            console.log("2")
+            ajouter_Plus_Candidats()
             break;
         case 3 :
             console.log("3")
