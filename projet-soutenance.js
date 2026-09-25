@@ -94,6 +94,37 @@ function affichage_par_Parti(){
     if( trouverparti === false){
         console.log("Aucun résultat trouver concernant cette partipolitique ")
     }
+
+ function voter_sur_candidat(){
+    if(candidats.length === 0){
+        console.log("Aucun candidat enregistrer a cette ");
+        return;
+    }
+    let cinElecteur = prompt("Entrez votre CIN pour votez ... ")
+    for(let i = 0; i<candidats.length; i++){
+        for(let j=0;j<candidats[i].votes.length; j++){
+            if(candidats[i].votes[j] === cinElecteur)
+                return;
+        }
+    }    
+
+ }console.log("véréfication OK , vous pouvez voter ")
+ affichage_Des_candidats()
+ let cinCandidat = prompt("saissez CIN de candidat pour voter ")
+ let candidatAtrouver = null ;
+ for(let i=0 ; i<candidats.length;i++){
+    if(candidats[i].Cin === cinCandidat){
+        candidatAtrouver = candidats[i]
+        break;
+    }
+ }
+ if(candidatAtrouver === null){
+    console.log("Vérification échoue : candidat introuvable")
+ }else{
+    let voteur = candidatAtrouver.votes.length
+    candidatAtrouver.votes[voteur] = cinElecteur
+    console.log("vote ajoutée avec succée pour : " + candidatAtrouver.Prenom + " " + candidatAtrouver.Nom )
+}
 }
 
 
@@ -130,7 +161,7 @@ do {
             break;
 
         case 4:
-            console.log("4")
+            voter_sur_candidat()
             break;
 
         case 5:
