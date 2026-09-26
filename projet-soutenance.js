@@ -240,13 +240,19 @@ function Supprimer_candidat(){
     }
     if(indextrouve === -1){
         console.log("candidat introuvable")
+        return;
     }
-    else{
-        for(let i = indextrouve ; i<candidats.length-1 ; i++)
-            candidats[i]=candidats.length-1
-        console.log("vous Avez Supprimer ce candidat Avec succée ")
+    let nouveauTableau = [];
+    for(let i = 0 ;i<candidats.length;i++){
+        if(i != indextrouve){
+            nouveauTableau[nouveauTableau.length]=candidats[i];
+        }
     }
+    candidats = nouveauTableau
+    console.log("vous avez supprimer ce candidat avec succée ")
+    
 }
+
 
 
 
