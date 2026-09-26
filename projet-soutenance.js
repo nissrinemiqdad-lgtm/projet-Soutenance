@@ -93,7 +93,7 @@ function affichage_Des_candidats(candidat,index){
     console.log("Nom : " + candidat.Nom);
     console.log("Prénom : " + candidat.Prenom);
     console.log("Age : " + candidat.Age);
-    console.log("Partipolitique : " + candidat.Partipolitique);
+    console.log("Partipolitique : " + candidat.Partipolitique.toLowerCase());
     console.log("Nomber de Votes : " + candidat.votes);
     console.log("____________________________");
 }
@@ -131,7 +131,7 @@ function affichage_par_Partipolitique(){
     let partirechercher = prompt("écrivez le nom de la partipolitique à rechercher...")
     let trouverparti = false ;
     for(let i =0; i< candidats.length; i++){
-        if(candidats[i].Partipolitique == partirechercher ){
+        if(candidats[i].Partipolitique.toLowerCase() == partirechercher ){
             affichage_Des_candidats(candidats[i],i)
             trouverparti = true;
         }
@@ -253,6 +253,22 @@ function Supprimer_candidat(){
     
 }
 
+function chercher_un_candidat (){
+    let nom_A_chercher = prompt("ENTRER LE NOM DU CANDIDAT...")
+    let trouve = false; 
+    for (let i =0 ; i<candidats.length;i++){
+        if(candidats[i].Nom.toLowerCase() === nom_A_chercher){
+            affichage_Des_candidats(candidats[i],i)
+            trouve = true;
+
+        }
+    }
+    if ( !trouve ){
+        console.log("candidat introuvable")
+    }
+
+}
+
 
 
 
@@ -297,7 +313,7 @@ do {
             break;
 
         case 7 :
-            console.log("7")
+            chercher_un_candidat()
             break;
 
         case 8 :
