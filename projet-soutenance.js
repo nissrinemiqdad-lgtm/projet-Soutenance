@@ -94,7 +94,7 @@ function affichage_Des_candidats(candidat,index){
     console.log("Prénom : " + candidat.Prenom);
     console.log("Age : " + candidat.Age);
     console.log("Partipolitique : " + candidat.Partipolitique);
-    console.log("Nomber de Votes : " + candidat.votes.length);
+    console.log("Nomber de Votes : " + candidat.votes);
     console.log("____________________________");
 }
 function afficher_candidat_listes_normal(){
@@ -225,6 +225,29 @@ function modifiercandidat(){
     }
 
 }
+function Supprimer_candidat(){
+    if(candidats.length === 0){
+        console.log("Aucun Candidat trouver")
+        return;
+    }
+    let Cin_à_SUpprimer = prompt(" SAISSEZ CIN DU CANDIDAT POUR LE SUPPRIMER ...")
+    let indextrouve = -1 ;
+    for(i=0; i < candidats.length ; i++){
+        if(candidats[i].Cin === Cin_à_SUpprimer){
+            indextrouve = i
+            break;
+        }
+    }
+    if(indextrouve === -1){
+        console.log("candidat introuvable")
+    }
+    else{
+        for(let i = indextrouve ; i<candidats.length-1 ; i++)
+            candidats[i]=candidats.length-1
+        console.log("vous Avez Supprimer ce candidat Avec succée ")
+    }
+}
+
 
 
 let choix 
@@ -264,7 +287,7 @@ do {
             break;
 
         case 6:
-            console.log("6")
+            Supprimer_candidat()
             break;
 
         case 7 :
