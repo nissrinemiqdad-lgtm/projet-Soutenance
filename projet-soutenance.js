@@ -228,7 +228,7 @@ function modifiercandidat(){
         console.log("PARTIPOLITIQUE modifier avec succée")
     }
     else if (choix === 2){
-        let nouveau_Age = number(prompt("Enter le nouveau Age ici ... "))
+        let nouveau_Age = Number(prompt("Enter le nouveau Age ici ... "))
         candidats[index].Age = nouveau_Age
         console.log("Age modifier avec succée ...!")
     }
