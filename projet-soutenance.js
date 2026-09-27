@@ -65,7 +65,18 @@ function ajoutercandidat(){
     let prenom_ = prompt("Prenom : ")
     let age_ = prompt("Age : ")
     let partipolitique_ = prompt("Partipolitique : ")
-    
+
+    let cin_existe = false;
+    for(let i = 0; i<candidats.length;i++){
+        if(candidats[i].Cin === cin_){
+            cin_existe = true;
+            break;
+        } 
+    }
+    if(cin_existe === true){
+        console.log("CIN existe déja,impossible d'AJOUTER.")
+        return;
+    }
 
     let candidat ={
         Cin : cin_ ,
@@ -79,14 +90,15 @@ function ajoutercandidat(){
     console.log("condidat Ajouté : " + prenom_ + " " + nom_)
 
 }
+
 function ajouter_Plus_Candidats(){
     let reponse 
     do{
         ajoutercandidat()
-        reponse = prompt("voulez-vous ajouter un autre candidat ? ")
-        
-    }while(reponse === "oui" || reponse === "OUI")
+        reponse = prompt("voulez-vous ajouter un autre candidat ? ").toLowerCase()        
+    }while(reponse === "oui" )
 }
+
 function affichage_Des_candidats(candidat,index){
     console.log("#candidat " + (index+1) + " : ");
     console.log("Cin : " + candidat.Cin);
@@ -122,7 +134,7 @@ function affichage_par_tri(){
 
         }
     }
- for(let i =0;i<vote_candidat.length;i++){
+    for(let i =0;i<vote_candidat.length;i++){
     affichage_Des_candidats(vote_candidat[i],i);
  }
 }
@@ -131,7 +143,7 @@ function affichage_par_Partipolitique(){
     let partirechercher = prompt("écrivez le nom de la partipolitique à rechercher...")
     let trouverparti = false ;
     for(let i =0; i< candidats.length; i++){
-        if(candidats[i].Partipolitique.toLowerCase() == partirechercher ){
+        if(candidats[i].Partipolitique.toLowerCase() == partirechercher.toLowerCase()){
             affichage_Des_candidats(candidats[i],i)
             trouverparti = true;
         }
@@ -216,7 +228,7 @@ function modifiercandidat(){
         console.log("PARTIPOLITIQUE modifier avec succée")
     }
     else if (choix === 2){
-        let nouveau_Age = prompt("Enter le nouveau Age ici ... ")
+        let nouveau_Age = number(prompt("Enter le nouveau Age ici ... "))
         candidats[index].Age = nouveau_Age
         console.log("Age modifier avec succée ...!")
     }
@@ -232,7 +244,7 @@ function Supprimer_candidat(){
     }
     let Cin_à_SUpprimer = prompt(" SAISSEZ CIN DU CANDIDAT POUR LE SUPPRIMER ...")
     let indextrouve = -1 ;
-    for(i=0; i < candidats.length ; i++){
+    for(let i=0; i < candidats.length ; i++){
         if(candidats[i].Cin === Cin_à_SUpprimer){
             indextrouve = i
             break;
@@ -257,7 +269,7 @@ function chercher_un_candidat (){
     let nom_A_chercher = prompt("ENTRER LE NOM DU CANDIDAT...")
     let trouve = false; 
     for (let i =0 ; i<candidats.length;i++){
-        if(candidats[i].Nom.toLowerCase() === nom_A_chercher){
+        if(candidats[i].Nom.toLowerCase() === nom_A_chercher.toLocaleLowerCase()){
             affichage_Des_candidats(candidats[i],i)
             trouve = true;
 
@@ -269,8 +281,79 @@ function chercher_un_candidat (){
 
 }
 
+function menu__(){
+    console.log("1-AFFICHER LE NOMBER TOTAL DE CANDIDATS")
+    console.log("2-AFFICHER LE NOMBER TOTAL DE VOTES ")
+    console.log("3-AFFICHER TOP 3 CANDIDATS")
+    console.log("4-AFFICHER LE NOMBER DE CANDIDAT SELON LA PARTI POLITIQUE")
+}
 
+function Number_total_candidat(){
+    console.log("LE NOMBER TOTALE DES CANDIDATS EST : " + candidats.length);
+}
 
+function Nomber_total_de_vote(){
+    let total = 0 
+    for(let i=0 ;i<candidats.length ; i++){
+        total = total + candidats[i].votes.length
+    }
+    console.log("Nomber total de votes exprimes est : " + total)
+}
+
+function Top_3_Candidats(){
+    let index = [];
+    for(let i = 0; i<candidats.length;i++){
+        index.push(i)
+    }
+    for(let i =0 ; i<index.length-1;i++){
+        for(let j= 0 ;j<index.length-1-i; j++){
+            let a = index[j]
+            let b = index[j+1];
+            if(candidats[a].votes.length < candidats[b].votes.length){
+                let temporaire = index[j];
+                index[j]= index[j+1];
+                index[j+1]= temporaire
+            }
+        }
+    }
+    let limite = 3; 
+    if(candidats.length<3){
+        limite = candidats.length;
+    }
+    console.log("====TOP 3 CANDIDATS====");
+    for(let n=0 ; n<limite; n++){
+        let vote_ = index[n];
+        console.log((n+1)+"- "+candidats[vote_].Nom + " " + candidats[vote_].Prenom + " " + candidats[vote_].votes + " VOTES" )
+    }
+    
+}
+function candidats_selon_parti_politique(){
+    let partis = [];
+    let compteurs = [];
+    for(let i=0 ;i<candidats.length;i++){
+        let parti = candidats[i].Partipolitique;
+        let trouve = false;
+        let indextrouve = -1
+        for(let j=0;j<partis.length;j++){
+            if(partis[j]===parti){
+                trouve =true;
+                indextrouve = j;
+                break;
+
+            }
+        }
+        if(trouve === false){
+            partis.push(parti);
+            compteurs.push(1);
+        }
+        else{
+            compteurs[indextrouve] = compteurs[indextrouve] +1;
+        }
+    }
+    for(let i = 0 ; i<partis.length;i++){
+        console.log(partis[i] + " : " + compteurs[i] + " candidats ")
+    }
+}
 
 let choix 
 do {
@@ -299,7 +382,6 @@ do {
                     break;
             }
             break;
-
         case 4:
             voter_sur_candidat()
             break;
@@ -317,7 +399,22 @@ do {
             break;
 
         case 8 :
-            console.log("8")
+            menu__()
+            let choix__ = Number(prompt("tapez votre choix ici..."))
+            switch(choix__){
+                case 1:
+                    Number_total_candidat()
+                    break;
+                case 2: 
+                    Nomber_total_de_vote()
+                    break;
+                case 3:
+                    Top_3_Candidats()
+                    break;
+                case 4:
+                    candidats_selon_parti_politique()
+                    break;
+            }
             break; 
        
     }
