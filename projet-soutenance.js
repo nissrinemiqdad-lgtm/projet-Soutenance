@@ -106,7 +106,7 @@ function affichage_Des_candidats(candidat,index){
     console.log("Prénom : " + candidat.Prenom);
     console.log("Age : " + candidat.Age);
     console.log("Partipolitique : " + candidat.Partipolitique.toLowerCase());
-    console.log("Nomber de Votes : " + candidat.votes);
+    console.log("Nomber de Votes : " + candidat.votes.length);
     console.log("____________________________");
 }
 function afficher_candidat_listes_normal(){
