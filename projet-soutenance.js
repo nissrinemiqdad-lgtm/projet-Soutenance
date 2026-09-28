@@ -17,7 +17,7 @@ let  candidats = [{Cin : "AE147852" ,
      Prenom : "NISSRINE" ,
      Age : 35 ,
      Partipolitique : "LES OLIVES" ,
-     votes : ['h' , 'g' , 'j' , 'e'  ]
+     votes : ['h' , 'g' , 'j' , 'e' , 'ùm' ,'f','hj' ]
     },
     {Cin : "DF123654",
      Nom : "jojoo" , 
