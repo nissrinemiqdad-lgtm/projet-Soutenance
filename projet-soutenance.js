@@ -54,14 +54,14 @@ let  candidats = [{Cin : "AE147852" ,
      Nom : "lam" , 
      Prenom : "Achraf" ,
      Age : 20 ,
-     Partipolitique : "Machi so9k" ,
+     Partipolitique : "LES AMANDES" ,
      votes : ['ù' , 15 , 20 ]
 
     }]
 
 function ajoutercandidat(){
     let cin_ = prompt("CIN: ")
-    let nom_ = prompt("NOm : ")
+    let nom_ = prompt("Nom : ")
     let prenom_ = prompt("Prenom : ")
     let age_ = prompt("Age : ")
     let partipolitique_ = prompt("Partipolitique : ")
@@ -228,7 +228,7 @@ function modifiercandidat(){
         console.log("PARTIPOLITIQUE modifier avec succée")
     }
     else if (choix === 2){
-        let nouveau_Age = number(prompt("Enter le nouveau Age ici ... "))
+        let nouveau_Age = Number(prompt("Enter le nouveau Age ici ... "))
         candidats[index].Age = nouveau_Age
         console.log("Age modifier avec succée ...!")
     }
@@ -269,7 +269,7 @@ function chercher_un_candidat (){
     let nom_A_chercher = prompt("ENTRER LE NOM DU CANDIDAT...")
     let trouve = false; 
     for (let i =0 ; i<candidats.length;i++){
-        if(candidats[i].Nom.toLowerCase() === nom_A_chercher.toLocaleLowerCase()){
+        if(candidats[i].Nom.toLowerCase() === nom_A_chercher.toLowerCase()){
             affichage_Des_candidats(candidats[i],i)
             trouve = true;
 
@@ -323,7 +323,7 @@ function Top_3_Candidats(){
     console.log("====TOP 3 CANDIDATS====");
     for(let n=0 ; n<limite; n++){
         let vote_ = index[n];
-        console.log((n+1)+"- "+candidats[vote_].Nom + " " + candidats[vote_].Prenom + " " + candidats[vote_].votes + " VOTES" )
+        console.log((n+1)+"- "+candidats[vote_].Nom + " " + candidats[vote_].Prenom + " " + candidats[vote_].votes.length + " VOTES" )
     }
     
 }
